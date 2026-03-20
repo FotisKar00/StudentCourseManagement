@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class Input {
+	
+	
+	public static void readData(ArrayList<Student> foithtes,ArrayList <Course> courses) {
+		
+		
+		boolean more=true;
+		
+		while(more) {
+			String selection=JOptionPane.showInputDialog("1:Student, 2:Graduate");
+			int choice=Integer.parseInt(selection); 
+			
+			String name=JOptionPane.showInputDialog("Name");
+			String id=JOptionPane.showInputDialog("Id");
+			String supervisor=null;
+			
+			if(choice==2) {
+				supervisor=JOptionPane.showInputDialog("Supervisor");
+			}
+			
+			Student student;
+			if(choice==1)
+				student=new Student(name,id);
+			else
+				student=new GraduateStudent(name,id,supervisor);
+			
+			String courseName=JOptionPane.showInputDialog("Enter Course name");
+			
+			for(Course course:courses) {
+				if(course.getName().equals(courseName))
+					student.addCourses(course);
+			}
+			
+			foithtes.add(student);
+			
+			
+			String answer=JOptionPane.showInputDialog("More Students? (Y/N)");
+			if(answer.equalsIgnoreCase("n")){
+				more=false;
+			}
+
+			
+	}
+	
+
+}
+}
